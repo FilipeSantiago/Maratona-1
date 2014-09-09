@@ -198,6 +198,124 @@ cout << setfill('x') << setw(6) << n; // "xxx-77"
 
 ```
 
+## algorithm
+```cpp
+#include <algorithm>
+
+// Básico
+void imprime(int i) {cout << i << endl;}
+bool menor(int i,int j) { return i<j; }
+bool igual(int i,int j) { return i==j; }
+bool par(int i){ return i%2==0; }
+vector<int> vet, vet2;
+
+// Percorre aplicando função
+for_each(vet.begin(), vet.end(), imprime);
+
+// Busca
+vector<int>::iterator it;
+it = find(vet.begin(), vet.end(), VALOR); // linear
+it = find_if(vet.begin(), vet.end(), par); // linear com condição
+it = binary_search(vet.begin(), vet.end(), VALOR, menor); // binária
+it = search(vet.begin(), vet.end(), vet2.begin(), vet2.end(), igual); // sublista
+it = find_end(vet.begin(), vet.end(), vet2.begin(), vet2.end(), igual); // sublista no final
+it = find_first_of(vet.begin(), vet.end(), vet2.begin(), vet2.end(), igual); // um dos resultados
+it = adjacent_find(vet.begin(), vet.end(), vet2.begin(), vet2.end(), igual); // elementos repetidos
+it = search_n(vet.begin(), vet.end(), QTD, VALOR); // QTD VALORES seguidos
+
+pair<vector<int>::iterator,vector<int>::iterator> par;
+par = mismatch(vet.begin(), vet.end(), vet2.begin()); // Primeira diferença
+
+// Contar
+int c = count(vet.begin(), vet.end(), 10);
+int c = count_if(vet.begin(), vet.end(), par);
+
+// Igualgdade
+bool igual = equal(vet.begin(), vet.end(), vet2.begin(), igual);
+
+// Copiar
+vet2.resize(vet.size());
+copy(vet.begin(), vet.end(), vet2.begin()); 
+copy_backward(vet.begin(), vet.end(), vet2.end()); // inverso
+
+// Swap
+swap(vet, vet2);
+
+
+// Continuar
+http://www.cplusplus.com/reference/algorithm/
+
+
+```
+
+## C++ Básico
+```cpp
+
+// Classe - private por padrão
+class Simple { 
+  int i_;
+public:
+  Simple(int i) : i_(i) {}; // Constructor
+  ~Simple(); // Destructor
+  Simple(const Simple &); // Copy Constructor
+  Simple & operator=(const Simple &); // Assignment Operator
+  void print_i(); // método
+};
+
+// Struct - public por padrão
+struct Simple { 
+  Simple(int i) : i_(i) {}; // construtor
+  void print_i(); // método
+private:
+  int i_;
+};
+
+void Simple::print_i() {
+  cout << i_ << endl;
+}
+
+// Alocação dinâmica
+int * a = new int [3];
+delete [] a;
+
+Simplt * s = new Simple;
+delete s;
+
+// Parametros:
+void foo(int a = 2); // Valor padrão
+void foo
+
+// Try catch
+try {
+  //código
+  throw 2;
+} catch (RangeError &re) {
+  // específica
+} catch (int &i) {
+  // Exceção 2
+} catch (...) {
+  // Qualquer exceção
+}
+
+vor foo(); // pode lançar qualquer exceção
+vor foo() throw(); // não lança exceção
+vor foo() throw(int); // só lança exceção int
+
+
+// Operadores
+TIPO operator()(TIPO param1, TIPO param2, ...) // function call
+TIPO& operator++() // ++valor
+TIPO operator++(int) // valor++
+TIPO& operator+=(const TIPO& outro) // +=
+TIPO operator+(TIPO primeiro, const TIPO& segundo) // primeiro + segundo
+bool operator<(const TIPO& primeiro, const TIPO& segundo) // p < s; único necessário
+bool operator==(const TIPO& primeiro, const TIPO& segundo) // p == s; único necessário
+const TIPO& operator[](size_t idx) const // var[idx]
+
+
+```
+
+
 
 # TODO DOCS
 - algorithm
