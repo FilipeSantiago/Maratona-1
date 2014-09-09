@@ -248,6 +248,45 @@ http://www.cplusplus.com/reference/algorithm/
 
 ```
 
+## cmath
+```cpp
+//Funções trigonométricas - em radianos
+double angle = 3.14;
+double v = sin(angle) + cos(angle) + tan(angle) +
+	 acos(1.0) + // [0, pi]
+	 asin(1.0) + // [-pi/2,+pi/2] 
+	 atan(1.0);  // [-pi/2,+pi/2]
+double x,y;
+v = atan2(y, x);  // [-pi,+pi]
+
+v = sinh(angle) + cosh(angle) + tanh(angle); // Funções hiperbólicas
+
+double PI = 355.0 / 113.0; //Aproximação de Pi
+
+double base = 3, expoent = 10;
+v = sqrt(25);           // Raiz quadrada
+v = pow(base, expoent); // 3^10
+v = exp(expoent);       // e^10
+v = log(1234);          // Logaritmo nepteriano
+v = log10(1234);        // Log na base 10
+
+int integer;
+double frac = modf(13.4, &integer); //Separa as partes inteira e decimal.
+
+v = log2(1024); // Log na base 2, C++11 apenas.
+
+v = ceil(12.3); // 13
+v = floor(12.3); // 12
+v = abs(-3.4); // 3.4, Módulo
+
+v = fmod(5.3, 2.0); // 1.3, resto fracionário da divisão inteira
+
+// Constantes
+v = NAN;
+v = HUGE_VAL; // ~= infinito
+v = INFINITY; // C++11
+```
+
 ## C++ Básico
 ```cpp
 
@@ -324,7 +363,6 @@ const TIPO& operator[](size_t idx) const // var[idx]
 - string
 - limits
 - complex
-- cmath
  
 # TODO ALG
 - bfs
