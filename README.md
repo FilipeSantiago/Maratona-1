@@ -46,8 +46,61 @@ map<int, int>::iterator key_value = var.find(KEY); // Busca elemento
 bool existe = key_value != var.end(); // Existe?
 ```
 
+## multimap
+```cpp
+#include <map>
+multimap<TIPO_KEY, TIPO_VALUE> var;
 
+var.insert(make_pair(KEY, VALUE)); // Insere
+var.erase(KEY); // Remove todos os valores associados à KEY
+multimap<TIPO_KEY, TIPO_VALUE>::iterator it = ...;
+var.erase(it); // Remove uma entrada
 
+multimap<int, int>::iterator key_value = var.find(KEY); // Busca alguma entrada
+bool existe = key_value != var.end(); // Existe?
+
+//Percorrimento das entradas de uma chave
+for(multimap<TIPO_KEY, TIPO_VAL>::iterator it = var.lower_bound(KEY); it != var.upper_bound(KEY); it++){
+	TIPO_KEY key = it->first;
+	TIPO_VALUE value = it->second;
+}
+```
+
+## set
+```cpp
+#include <set>
+set<TIPO> var;
+
+var.insert(ITEM); // Insere
+var.erase(KEY); // Remove
+bool existe = var.find(ITEM) != var.end(); // Contém?
+```
+
+## queue
+```cpp
+#include <queue>
+queue<TIPO> var;
+
+var.push(ITEM); // Insere
+TIPO primeiro = var.front(); // Pega o primeiro sem remover
+var.pop(); // Remove primeiro
+```
+
+## priority queue
+```cpp
+#include <queue>
+priority_queue<TIPO> var; //Cria com comparador padrão Less<T>
+
+class MyComparator{
+	bool operator ()(const TIPO & v1, const TIPO & v2){...}
+}
+
+priority_queue<TIPO, std::vector<TIPO>, MyComparator> var; //Cria com comparador personalizado
+
+var.push(ITEM); // Insere
+TIPO primeiro = var.top(); // Pega o primeiro sem remover
+var.pop(); // Remove primeiro
+```
 
 
 ## stream
@@ -135,10 +188,7 @@ cout << setfill('x') << setw(6) << n; // "xxx-77"
 
 
 # TODO DOCS
-- multimap
-- queue
 - deque
-- set
 - algorithm
 - functional
 - utility
