@@ -33,6 +33,18 @@ TIPO primeiro = var.front(); // Primeiro elemento
 TIPO ultimo = var.back(); // Ultimo elemento
 ```
 
+## deque << vector
+```cpp
+#include <deque>
+
+// Declaração
+deque<TIPO> var;
+var.push_front(VALOR); // Adiciona no inicio
+var.pop_front(); // Remove do inicio
+
+// Todas outras operações de vector
+```
+
 ## map
 ```cpp
 #include <map>
@@ -188,7 +200,6 @@ cout << setfill('x') << setw(6) << n; // "xxx-77"
 
 
 # TODO DOCS
-- deque
 - algorithm
 - functional
 - utility
