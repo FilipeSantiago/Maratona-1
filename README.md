@@ -573,16 +573,17 @@ def djakstra(src, graph):
 ## BFS
 ```cpp
 
-void bfs(T src, T dest){
+bool bfs(T src, T dest){
 	queue<T> fila;
 	fila.push_back(src);
 	set<T> visitados;
+	map<T, T> parent;
 
 	while(!fila.empty()){
 		T cur = fila.front();
 
 		if(cur == dest){
-			// retorna
+			return true;
 		}
 
 		fila.pop();
@@ -590,10 +591,12 @@ void bfs(T src, T dest){
 		foreach(T adj in cur.adjacencias){
 			if(!visitados.contains(adj)){ // Pseudo-code
 				fila.push_back(adj);
+				parent.insert(make_pair(cur, adj));
 				visitados.insert(adj);
 			}
 		}
 	}
+	return false;
 }
 ```
 
@@ -620,6 +623,39 @@ def prim(graph):
 		reached_vertices = reached_vertices.union(set(minEdge))
 
 	return selected_edges
+```
+
+## Ford-Fulkerson (Fluxo máximo)
+```cpp
+
+int fordFulkerson(int grapv[V}[V], int s, int t) {
+	int u, v;
+	int rGraph[V][V]; // Residual graph
+	for (u = 0; u < V; v++) 
+		for(v = 0; v < V; v++)
+			rGraph[u][v] = graph[u][v];
+	
+	int parent[V]; // armazena caminho, BFS deve usar
+	int max_flow = 0;
+	
+	// Enquanto tem caminho no grafo residual
+	while(bfs(rGraph, s, t, parent)) {
+		int path_flow = INT_MAX;
+		for (v = t; v != s; v = parent[v]) {
+			u = parent[v]
+			path_flow = min(path_flow, rGraph[u][v]);
+		}
+		for (v = t; v != s; v = parent[v]) {
+			u = parent[v];
+			rGraph[u][v] -= path_flow;
+			rGraph[v][u] += path_flow;
+		}
+		
+		max_flow += path_flow;
+	}
+	return max_flow;
+}
+
 ```
 
 
