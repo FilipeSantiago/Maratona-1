@@ -546,6 +546,30 @@ conjugate(x); // Conjugado
 x = polar(2, 0.5); x = 2*e^i*0.5
 ```
 
+## Djakstra (custo mínimo)
+```python
+def djakstra(src, graph):
+	costs = [INFINITY for v in graph] #array
+	parent = [None for v in graph]    #array
+	to_visit = [src]                  #fila
+	visited = [src]                   #conjunto
+	costs[src] = 0
+
+	while to_visit:
+		v = to_visit.pop(0)
+		for adj in graph.adjs(v):
+			newCost = costs[v] + graph[v][adj]
+			if newCost < costs[adj]:
+				costs[adj] = newCost
+				parent[adj] = v
+
+			if not adj in visited:
+				visited.append(adj)
+				to_visit.append(adj)
+
+	return costs, parent
+```
+
 ## BFS
 ```cpp
 
@@ -575,7 +599,6 @@ void bfs(T src, T dest){
 
 
 # TODO ALG
-- djasktra
 - bellman-ford
 - floyd-marshall
 - kruskal
