@@ -75,6 +75,8 @@ for(multimap<TIPO_KEY, TIPO_VAL>::iterator it = var.lower_bound(KEY); it != var.
 }
 ```
 
+<div></div>
+
 ## set
 ```cpp
 #include <set>
