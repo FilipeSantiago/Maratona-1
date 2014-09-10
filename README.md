@@ -133,7 +133,7 @@ cin.ignore(); // Discartar espaÃ§os
 getline(cin, b);
 cin >> c;
 ```
-<br><br>
+<br><br><br><br>
 
 ## sstream
 ```cpp
