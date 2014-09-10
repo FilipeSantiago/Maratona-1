@@ -177,16 +177,12 @@ cout.width(6); cout << left << n;     // "-77   "
 cout.width(6); cout << right << n;    // "   -77"
 
 #include <iomanip>
-
 // Float
 cout << setprecision(5) << f; // 3.14159
-
 // Base
 cout << setbase(16) << n; // 4d
-
 // Justify
 cout << setw(6) << n; // "   -77"
-
 // Fill
 cout << setfill('x') << setw(6) << n; // "xxx-77"
 ```
