@@ -191,7 +191,6 @@ cout << setw(6) << n; // "   -77"
 
 // Fill
 cout << setfill('x') << setw(6) << n; // "xxx-77"
-
 ```
 
 ## algorithm
@@ -340,8 +339,6 @@ reverse(vet.begin(), vet.end());
 do {
 	for_each(vet.begin(), vet.end(), imprime);
 } while (prev_permutation(vet.begin(), vet.end()));
-
-
 ```
 
 ## functional
@@ -388,6 +385,47 @@ adjacent_difference(vet.begin(), vet.end(), vet2.begin(), <minus<int>()>);
 int v = inner_product(vet.begin(), vet.end(), vet2.begin(), INIT, <plus<int>(), multiplies<int>()>)
 // Soma parcial
 partial_sum(vet.begin(), vet.end(), vet2.begin(), <plus<int>()>); // "1 2 3 4" -> "1 3 6 10"
+```
+
+## string
+```cpp
+#include <string>
+string s;
+string s("abc"); // construtor
+string::iterator b = s.begin(), e = s.end(); // iteradores
+int tamanho = s.size(); tamanho = s.length(); // tamanh
+bool vazia = s.empty(); // vazia?
+cout << c[1] << c.at(1); // acessar
+
+s += "outra"; s.append("outra");
+s.push_back('c');
+
+char * cstr = s.c_str(); // converte para c string
+
+// Busca
+size_t posicao = s.find("valor", <POSICAO>); // primeira ocorrencia
+size_t posicao = s.rfind("valor", <POSICAO>); // ultima ocorrencia 
+size_t posicao = s.find_first_of("aeiou"); // algum dos chars
+size_t posicao = s.find_last_of("aeiou"); // algum dos chars
+size_t posicao = s.find_first_not_of("aeiou"); // algum que não é um dos chars
+size_t posicao = s.find_last_not_of("aeiou"); // algum que não é um dos chars
+
+bool achou = posicao != string::npos;
+
+// Substring
+string s2 = s.substr(INICIO, <TAMANHO>); 
+
+// Comparar
+int cmp = compare(<INICIO, TAMANHO>, outra, <INICIO, TAMANHO>);
+
+// Substituir
+s.replace(INICIO, TAMANHO, outra); 
+s.replace(INICIO, TAMANHO, outra, INICIO, TAMANHO);
+s.replace(INICIO, TAMANHO, outra, TAMANHO);
+s.replace(INICIO, TAMANHO, QUANTIDADE, CHAR);
+
+// Ler linha
+getline(cin, s);
 ```
 
 ## cmath
@@ -492,8 +530,30 @@ TIPO operator+(TIPO primeiro, const TIPO& segundo) // primeiro + segundo
 bool operator<(const TIPO& primeiro, const TIPO& segundo) // p < s; único necessário
 bool operator==(const TIPO& primeiro, const TIPO& segundo) // p == s; único necessário
 const TIPO& operator[](size_t idx) const // var[idx]
+```
 
+## limits
+```cpp
+#include <limits>
+// Exemplos para int
+numeric_limits<TIPO>::min(); // -2147483648
+numeric_limits<TIPO>::max(); // 21477483647
+numeric_limits<TIPO>::is_signed(); // 1
+numeric_limits<TIPO>::digits(); // 31 bits
+numeric_limits<TIPO>::has_infinity; // 0
+```
 
+## complex
+```cpp
+#include <complex>
+
+complex<double> x(REAL, IMAG);
+real(x); imag(x); // Pega parte real e imaginária
+abs(x); arg(x) // x = abs(x)*e^i*arg(x) rad
+norm(x); // Norma de x
+conjugate(x); // Conjugado
+
+x = polar(2, 0.5); x = 2*e^i*0.5
 ```
 
 ## BFS
@@ -521,17 +581,9 @@ void bfs(T src, T dest){
 		}
 	}
 }
-
 ```
 
 
-
-# TODO DOCS
-
-- string
-- limits
-- complex
- 
 # TODO ALG
 - djasktra
 - bellman-ford
