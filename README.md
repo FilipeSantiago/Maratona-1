@@ -11,7 +11,6 @@ for (; it != var.end(); it++) //Loop
 ```
 
 ## vector
-
 ```cpp
 #include <vector>
 
@@ -41,8 +40,6 @@ TIPO ultimo = var.back(); // Ultimo elemento
 deque<TIPO> var;
 var.push_front(VALOR); // Adiciona no inicio
 var.pop_front(); // Remove do inicio
-
-// Todas outras operações de vector
 ```
 
 ## map
@@ -113,7 +110,6 @@ var.push(ITEM); // Insere
 TIPO primeiro = var.top(); // Pega o primeiro sem remover
 var.pop(); // Remove primeiro
 ```
-
 
 ## stream
 ```cpp
@@ -348,6 +344,52 @@ do {
 
 ```
 
+## functional
+```cpp
+#include <functional>
+
+// Aritmética / lógica
+transform(vet.begin(), vet.end(), vet2.begin(), result.begin(), plus<TIPO>());
+minus<TIPO>(); multiplies<TIPO>(); divides<TIPO>(); modulus<TIPO>(); negate<TIPO>();
+logical_and<bool>(); logical_or<bool>(); logical_not<bool>();
+// Comparação
+it = mismatch(vet.begin(), vet.end(), vet2.begin(), equal_to<int>());
+not_equal_to<TIPO>(); greater<TIPO>(); less<TIPO>(); greater_equal<TIPO>(); less_equal<TIPO>();
+// Negação
+count_if(vet.begin(), vet.end(), not1(par));
+it = mismatch(vet.begin(), vet.end(), vet2.begin(), not2(equal_to<int>()));
+// Bind
+count_if(vet.begin(), vet.end(), bind1st(equal_to<int>(), 10));
+count_if(vet.begin(), vet.end(), bind2nd(less<int>(), 10));
+// Converte ponteiro em função
+transform(vet.begin(), vet.end(), vet2.begin(), ptr_fun(atoi));
+// Usar método de objeto
+transform(vet.begin(), vet.end(), vet2.begin(), mem_fun(&string::length)); //se valores forem ponteiros
+transform(vet.begin(), vet.end(), vet2.begin(), mem_fun_ref(&string::length)); //se valores forem valores
+
+```
+
+## utility
+```cpp
+#include <utility>
+swap(a, b); 
+pair<TIPO, TIPO> x = make_pair(a, b);
+x.first; x.second;
+```
+
+## numeric
+```cpp
+#include <numeric>
+// Acumular resultado - reduce
+int v = accumulate(vet.begin(), vet.end(), INIT, <plus<int>()>); 
+// Subtrair valores adjacentes
+adjacent_difference(vet.begin(), vet.end(), vet2.begin(), <minus<int>()>);
+// Acumular produtos entre adjacentes
+int v = inner_product(vet.begin(), vet.end(), vet2.begin(), INIT, <plus<int>(), multiplies<int>()>)
+// Soma parcial
+partial_sum(vet.begin(), vet.end(), vet2.begin(), <plus<int>()>); // "1 2 3 4" -> "1 3 6 10"
+```
+
 ## cmath
 ```cpp
 //Funções trigonométricas - em radianos
@@ -485,8 +527,7 @@ void bfs(T src, T dest){
 
 
 # TODO DOCS
-- functional
-- utility
+
 - string
 - limits
 - complex
