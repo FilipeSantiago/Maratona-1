@@ -390,12 +390,9 @@ string::iterator b = s.begin(), e = s.end(); // iteradores
 int tamanho = s.size(); tamanho = s.length(); // tamanh
 bool vazia = s.empty(); // vazia?
 cout << c[1] << c.at(1); // acessar
-
 s += "outra"; s.append("outra");
 s.push_back('c');
-
 char * cstr = s.c_str(); // converte para c string
-
 // Busca
 size_t posicao = s.find("valor", <POSICAO>); // primeira ocorrencia
 size_t posicao = s.rfind("valor", <POSICAO>); // ultima ocorrencia 
@@ -403,7 +400,6 @@ size_t posicao = s.find_first_of("aeiou"); // algum dos chars
 size_t posicao = s.find_last_of("aeiou"); // algum dos chars
 size_t posicao = s.find_first_not_of("aeiou"); // algum que não é um dos chars
 size_t posicao = s.find_last_not_of("aeiou"); // algum que não é um dos chars
-
 bool achou = posicao != string::npos;
 
 // Substring
