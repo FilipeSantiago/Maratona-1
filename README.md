@@ -87,6 +87,8 @@ var.erase(KEY); // Remove
 bool existe = var.find(ITEM) != var.end(); // Contém?
 ```
 
+<br><br><br><br>
+
 ## queue
 ```cpp
 #include <queue>
