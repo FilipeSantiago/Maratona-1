@@ -133,14 +133,13 @@ cin.ignore(); // Discartar espaÃ§os
 getline(cin, b);
 cin >> c;
 ```
+<br><br>
 
 ## sstream
 ```cpp
 #include <sstream>
-
 stringstream ss;
 stringstream ss("text");
-
 ss << "2"; // Input
 int num;
 ss >> num; // Output
@@ -150,7 +149,6 @@ string result = ss.str() // Tudo o que está no stream
 ## iostream e iomanip
 ```cpp
 #include <iostream>
-
 // input
 char a, b, c;
 istringstream ss("  123")'
@@ -159,24 +157,20 @@ cout << a << b << c; // '123'
 iss.seekg(0);
 ss >> noskipws >> a >> b >> c;
 cout << a << b << c; // '  1'
-
 // Float
 cout.precision(5); 
 cout << f; // 3.14159
 cout << fixed << n; // 2006.00000
 cout << scientific << n; // 2.00600e+003
-
 // Base
 cout << uppercase << hex << n; //4D
 cout << nouppercase << hex << n; // 4d
 cout << showbase << hex << n; //0x4d
 cout << dec << n;
 cout << oct << n;
-
 // Bool
 cout << boolalpha << b; // true
 cout << noboolalpha << b; // 1
-
 // Justify
 cout.width(6); cout << internal << n; // "-   77"
 cout.width(6); cout << left << n;     // "-77   "
