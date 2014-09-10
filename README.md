@@ -552,7 +552,7 @@ def djakstra(src, graph):
 	costs = [INFINITY for v in graph] #array
 	parent = [None for v in graph]    #array
 	to_visit = [src]                  #fila
-	visited = [src]                   #conjunto
+	visited = set([src])              #conjunto
 	costs[src] = 0
 
 	while to_visit:
@@ -564,7 +564,7 @@ def djakstra(src, graph):
 				parent[adj] = v
 
 			if not adj in visited:
-				visited.append(adj)
+				visited.add(adj)
 				to_visit.append(adj)
 
 	return costs, parent
@@ -597,12 +597,36 @@ void bfs(T src, T dest){
 }
 ```
 
+## Prim (árvore geradora mínima)
+```python
+def findMinEdge(reached_vertices, graph):
+	best_edge = None
+	for u in reached_vertices:
+		for v in adjs(u, graph):
+			if not v in reached_vertices:
+				candidate = (u,v)
+				if not best_edge or cost(candidate) < cost(best_edge):
+					best_edge = candidate
+	return best_edge
+
+
+def prim(graph):
+	reached_vertices = set([0]) # qualquer vértice como inicial
+	selected_edges = []
+
+	while len(reached_vertices) != len(graph): # enquanto não atingir todos os vértices
+		minEdge = findMinEdge(reached_vertices, graph)
+		selected_edges.append(minEdge)
+		reached_vertices = reached_vertices.union(set(minEdge))
+
+	return selected_edges
+```
+
 
 # TODO ALG
 - bellman-ford
 - floyd-marshall
 - kruskal
-- prim
 - lcs
 - lis
 - modular_pow
