@@ -275,9 +275,9 @@ double frac = modf(13.4, &integer); //Separa as partes inteira e decimal.
 
 v = log2(1024); // Log na base 2, C++11 apenas.
 
-v = ceil(12.3); // 13
+v = ceil(12.3);  // 13
 v = floor(12.3); // 12
-v = abs(-3.4); // 3.4, Módulo
+v = abs(-3.4);   // 3.4, Módulo
 
 v = fmod(5.3, 2.0); // 1.3, resto fracionário da divisão inteira
 
@@ -354,6 +354,34 @@ const TIPO& operator[](size_t idx) const // var[idx]
 
 ```
 
+## BFS
+```cpp
+
+void bfs(T src, T dest){
+	queue<T> fila;
+	fila.push_back(src);
+	set<T> visitados;
+
+	while(!fila.empty()){
+		T cur = fila.front();
+
+		if(cur == dest){
+			// retorna
+		}
+
+		fila.pop();
+		visitados.insert(cur);
+		foreach(T adj in cur.adjacencias){
+			if(!visitados.contains(adj)){ // Pseudo-code
+				fila.push_back(adj);
+				visitados.insert(adj);
+			}
+		}
+	}
+}
+
+```
+
 
 
 # TODO DOCS
@@ -365,7 +393,6 @@ const TIPO& operator[](size_t idx) const // var[idx]
 - complex
  
 # TODO ALG
-- bfs
 - djasktra
 - bellman-ford
 - floyd-marshall
