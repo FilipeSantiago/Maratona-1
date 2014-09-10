@@ -655,14 +655,28 @@ int fordFulkerson(int grapv[V}[V], int s, int t) {
 	}
 	return max_flow;
 }
-
 ```
 
+# Longest Common Subsequence
+```python
+def lcs(a, b):
+	X = [0]*(max(len(b), len(a)) + 1)
+	Y = [0]*(max(len(b), len(a)) + 1)
+	for i in range(len(a), -1, -1):
+		for j in range(len(b), -1, -1):
+			if i >= len(a) or j >= len(b):
+				X[j] = 0
+			elif a[i] == b[j]:
+				X[j] = 1 + Y[j + 1]
+			else:
+				X[j] = max(Y[j], X[j + 1])
+		Y = [x for x in X] # Copiar X
+	return X[0]
+```
 
 # TODO ALG
 - bellman-ford
 - floyd-marshall
 - kruskal
-- lcs
 - lis
 - modular_pow
