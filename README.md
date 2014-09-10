@@ -207,7 +207,10 @@ void imprime(int i) {cout << i << endl;}
 bool menor(int i,int j) { return i<j; }
 bool igual(int i,int j) { return i==j; }
 bool par(int i){ return i%2==0; }
-vector<int> vet, vet2;
+int dobrar(int i) { return 2*i; }
+int aleatorio() { return rand()%100; }
+vector<int> vet, vet2, ordenado;
+// Considere <param> como opcional
 
 // Percorre aplicando função
 for_each(vet.begin(), vet.end(), imprime);
@@ -216,22 +219,25 @@ for_each(vet.begin(), vet.end(), imprime);
 vector<int>::iterator it;
 it = find(vet.begin(), vet.end(), VALOR); // linear
 it = find_if(vet.begin(), vet.end(), par); // linear com condição
-it = binary_search(vet.begin(), vet.end(), VALOR, menor); // binária
-it = search(vet.begin(), vet.end(), vet2.begin(), vet2.end(), igual); // sublista
+it = binary_search(ordenado.begin(), ordenado.end(), VALOR, <menor>); // binária
+it = lower_bound(ordenado.begin(), ordenado.end(), VALOR, <menor>); // ponteiro para o primeiro VALOR
+it = upper_bound(ordenado.begin(), ordenado.end(), VALOR, <menor>); // ponteiro para o primeiro numero depois de VALOR
+it = search(vet.begin(), vet.end(), vet2.begin(), vet2.end(), <igual>); // sublista
 it = find_end(vet.begin(), vet.end(), vet2.begin(), vet2.end(), igual); // sublista no final
-it = find_first_of(vet.begin(), vet.end(), vet2.begin(), vet2.end(), igual); // um dos resultados
-it = adjacent_find(vet.begin(), vet.end(), vet2.begin(), vet2.end(), igual); // elementos repetidos
+it = find_first_of(vet.begin(), vet.end(), vet2.begin(), vet2.end(), <igual>); // um dos resultados
+it = adjacent_find(vet.begin(), vet.end(), vet2.begin(), vet2.end(), <igual>); // elementos repetidos
 it = search_n(vet.begin(), vet.end(), QTD, VALOR); // QTD VALORES seguidos
 
 pair<vector<int>::iterator,vector<int>::iterator> par;
 par = mismatch(vet.begin(), vet.end(), vet2.begin()); // Primeira diferença
+par = equal_range(ordenado.begin(), ordenado.end(), VALOR, <menor>); // Subconjunto de VALORES
 
 // Contar
 int c = count(vet.begin(), vet.end(), 10);
 int c = count_if(vet.begin(), vet.end(), par);
 
 // Igualgdade
-bool igual = equal(vet.begin(), vet.end(), vet2.begin(), igual);
+bool igual = equal(vet.begin(), vet.end(), vet2.begin(), <igual>);
 
 // Copiar
 vet2.resize(vet.size());
@@ -239,11 +245,105 @@ copy(vet.begin(), vet.end(), vet2.begin());
 copy_backward(vet.begin(), vet.end(), vet2.end()); // inverso
 
 // Swap
-swap(vet, vet2);
+swap(vet, vet2); // Swap variavel
+swap_ranges(vet.begin() + 1, vet.end() - 1, vet2.begin()); // Swap parte do vetor
+iter_swap(vet.begin(), vet2.begin() + 1); // Swap dentro de vetor.
+
+// Transform
+vet2.resize(vet.size());
+transform(vet.begin(), vet.end(), vet2.begin(), dobrar); // mapeia dobrar para cada elemento de vet
+transform(vet.begin(), vet.end(), vet2.begin(), result.begin(), soma); // mapeia soma para cada para <vet[i], vet2[i]>
+
+// Substituir elementos
+replace(vet.begin(), vet.end(), ORIGINAL, DESTINO);
+replace_if(vet.begin(), vet.end(), par, DESTINO);
+replace_copy(vet.begin(), vet.end(), vet2.begin(), ORIGINAL, DESTINO); // Resultado em vet2
+replace_copy_if(vet.begin(), vet.end(), vet2.begin(), par, DESTINO); // Resultado em vet2
+
+// Preencher
+fill(vet.begin(), vet.begin() + 3, VALOR); // VALOR VALOR VALOR vet[4] vet[5] ...
+fill_n(vet.begin(), 3, VALOR); // VALOR VALOR VALOR vet[4] vet[5] ...
+
+// Gerar
+struct c_unique { 
+  int current;
+  c_unique() {current=0;}
+  int operator()() {return ++current;}
+} UniqueNumber;
+
+generate(vet.begin(), vet.end(), UniqueNumber);
+generate_n(vet.begin(), 3, aleatorio);
+
+// Remover elementos
+it = remove(vet.begin(), vet.end(), 20); // "20 10 20 15" -> "10 15 ? ?". Retorna novo end
+it = remove_if(ver.begin(), vet.end(), par);
+remove_copy(vet.begin(), vet.end(), vet2.begin(), 20);
+remove_copy_if(vet.begin(), vet.end(), vet2.begin(), par);
+
+// Remover duplicatas consecutivas
+it = unique(vet.begin(), vet.end(), <igual>); // "20 20 10 20" -> "20 10 20 ?". Retorna novo end
+unique_copy(vet.begin(), vet.end(), vet2.begin(), <igual>); 
+
+// Inverter
+reverse(vet.begin(), vet.end());
+reverse_copy(vet.begin(), vet.end(), vet2.end());
+
+// Circular
+rotate(vet.begin(), vet.begin() + 2, vet.end()); // "1 2 3 4" -> "3 4 1 2"
+rotate_copy(vet.begin(), vet.begin() + 2, vet.end(), vet2.begin());
+
+// Embaralhar
+random_shuffle(vet.begin(), vet.end(), <aleatorio>);
+
+// Separar elementos
+it = partition(vet.begin(), vet.end(), par); // begin - it: pares; it - end: impares
+it = stable_partition(vet.begin(), vet.end(), par); // mantem a ordem
+
+// Ordenar
+sort(vet.begin(), vet.end(), <menor>);
+stable_sort(vet.begin(), vet.end(), <menor>); // mantem ordem de elementos semelhantes
+partial_sort(vet.begin(), vet.begin() + 2, vet.end(), <menor>); // "4 3 2 1" -> "1 2 4 3"
+partial_sort_copy(vet.begin(), vet.end(), vet2.begin(), vet2.end(), <menor>);
+nth_element(vet.begin(), vet.begin() + 5, vet.end(), <menor>); // vet[0..4] < vet[5] < vet[6..]
+
+// Junção
+merge(ordenado.begin(), ordenado.end(), ordenado2.begin(), ordenado2.end(), vet.begin());
+inplace_merge(ordenado.begin(), ordenado.begin()+5, ordenado.end());
+bool inclui = includes(ordenado.begin(), ordenado.end(), ordenado2.begin(), ordenado2.end());
+it = set_union(ord.begin(), ord.end(), ord2.begin(), ord2.end(), vet.begin(), <menor>); // Merge sem repetição
+it = set_intersection(ord.begin(), ord.end(), ord2.begin(), ord2.end(), vet.begin(), <menor>); // Interseção
+it = set_difference(ord.begin(), ord.end(), ord2.begin(), ord2.end(), vet.begin(), <menor>); // Diferença
+it = set_symmetric_difference(ord.begin(), ord.end(), ord2.begin(), ord2.end(), vet.begin(), <menor>); // (A - B) U (B - A)
+
+// Heap
+make_heap(vet.begin(), vet.end());
+pop_head(vet.begin(), vet.end()); vet.pop_back();
+vet.push_back(99); push_heap(vet.begin(), vet.end());
+cout << "max: " << vet.front();
+sort_heap(vet.begin(), vet.end());
+
+// Min/max
+v = min(VALOR, VALOR2);
+v = max(VALOR, VALOR2);
+it = min_element(vet.begin(), vet.end(), <menor>);
+it = max_element(vet.begin(), vet.end(), <menor>);
+
+// Comparação lexicográfica
+int cmp = lexicographical_compare(vet.begin(), vet.end(), vet2.begin(), vet2.end(), <menor>); 
+
+// Permutações, crescente
+sort(vet.begin(), vet.end());
+do {
+	for_each(vet.begin(), vet.end(), imprime);
+} while (next_permutation(vet.begin(), vet.end()));
 
 
-// Continuar
-http://www.cplusplus.com/reference/algorithm/
+// Permutações, decrescente
+sort(vet.begin(), vet.end());
+reverse(vet.begin(), vet.end());
+do {
+	for_each(vet.begin(), vet.end(), imprime);
+} while (prev_permutation(vet.begin(), vet.end()));
 
 
 ```
@@ -385,7 +485,6 @@ void bfs(T src, T dest){
 
 
 # TODO DOCS
-- algorithm
 - functional
 - utility
 - string
