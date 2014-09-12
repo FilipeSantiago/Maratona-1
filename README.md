@@ -546,6 +546,57 @@ conjugate(x); // Conjugado
 x = polar(2, 0.5); x = 2*e^i*0.5
 ```
 
+## Tipos inteiros
+```c++
+int a;                    // 32 bits,  [-2.147.483.648, 2.147.483.647]
+unsigned int a;           // 32 bits,  [0, 4.294.967.295]
+long long int a;          // 64 bits,  [-9.223.372.036.854.775.808, 9.223.372.036.854.775.807]
+unsigned long long int a; // 64 bits,  [0, 18.446.744.073.709.551.615]
+float a;                  // 32 bits,  [1.2E-38, 3.4E+38]
+double a;                 // 64 bits,  [2.3E-308, 1.7E+308]
+long double a;            // 128 bits, [3.4E-4932, 1.1E+4932]
+```
+
+## Java BigInteger
+```java
+import java.math.BigInteger;
+
+// Constantes
+BigInteger.ZERO;
+BigInteger.ONE;
+BigInteger.TEN;
+
+// Construtores
+int base = 10;
+BigInteger.valueOf(123456789);
+BigInteger.valueOf("123456789");
+BigInteger.valueOf("123456789", base);
+byte [] binaryRepr; // Representação binária em C2 com bit mais significante à esquerda
+BigInteger.valueOf(binaryRepr);
+
+// Operações
+BigInteger a, b, c;
+int expoent = 0;
+c = a.add(b);
+c = a.subtract(b);
+c = a.multiply(b);
+c = a.divide(b);
+c = a.mod(b);
+c = a.pow(expoent);
+BigInteger[] arr = a.divideAndRemainder(b);
+BigInteger divider = arr[0], remainder = arr[1];
+
+boolean iguais = a.equals(b);
+int comparacao = a.compareTo(b);
+
+//Conversão
+int val = a.intValue();
+long val = a.longValue();
+float val = a.floatValue();
+// etc
+String strVal = a.toString();
+```
+
 ## Djakstra (custo mínimo)
 ```python
 def djakstra(src, graph):
