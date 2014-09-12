@@ -843,5 +843,41 @@ def progDinamica(caso, lookup_table):
 		return lookup_table[caso] = combina(caso, resp_proximo_caso)
 ```
 
-# TODO ALG
-- modular_pow
+## Modular exponentiation ((base ^ exp) % mod)
+```cpp
+int modular_pow(int base, int exp, int modulus) {
+	int result = 1;
+	base = base % modulus;
+	while (exp > 0) {
+		if (exp % 2 == 1) {
+			result = (result * base) % modulus;
+		}
+		exp = exp >> 1;
+		base = (base * base) % modulus;
+	}
+	return result;
+}
+```
+
+## Sieve of Eratosthenes (todos os primos menores do que N)
+```python
+def sieve_of_eratosthenes(n):
+	primes = []
+	used = [0]*(n + 1)
+	for i in range(2, n + 1):
+		if not used[i]:
+			primes.append(i)
+			for j in range(i**2, n + 1, i):
+				used[j] = 1
+	return primes
+```
+
+## N-ésimo primo:
+```cpp
+#include <cmath>
+int overestimate_prime(int n) {
+	return (int) n*log(n) + n*log(log(n));
+}
+
+sieve_of_eratosthenes(overestimate_prime(n))[n - 1];
+```
