@@ -884,7 +884,6 @@ def sieve_of_eratosthenes(n):
 int overestimate_prime(int n) {
 	return (int) n*log(n) + n*log(log(n));
 }
-
 sieve_of_eratosthenes(overestimate_prime(n))[n - 1];
 ```
 
