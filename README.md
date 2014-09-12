@@ -812,6 +812,7 @@ def lis(sequence):
 				max_len = dp[i]
 	return max_len, best_end, prev
 ```
+<br><br>
 
 ## Mochila 01 (Prog Dinâmica)
 ```python
