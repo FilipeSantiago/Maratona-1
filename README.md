@@ -21,15 +21,15 @@ vector<TIPO> var(QTD, VALOR);
 var.push_back(VALOR);  // Adiciona elemento
 var.pop_back(); // Remove elemento
 
-vector<TIPO>::iterator it = var.begin(); //Iterador normal
-vector<TIPO>::reverse_iterator rit = var.rbegin(); //Iterador reverso
+vector<TIPO>::iterator it = var.begin(); // Iterador normal
+vector<TIPO>::reverse_iterator rit = var.rbegin(); // Iterador reverso
 
 var.insert(it, VALOR); // Insere na posição it
 var.insert(it, QTD, VALOR); // Insere QTD VALORES na posição it
 var.insert(it, ARRAY + 0, ARRAY + Tamanho); // Insere todos os valores de um array.
 
 TIPO primeiro = var.front(); // Primeiro elemento
-TIPO ultimo = var.back(); // Ultimo elemento
+TIPO ultimo = var.back(); // Último elemento
 ```
 
 ## deque << vector
@@ -102,13 +102,13 @@ var.pop(); // Remove primeiro
 ## priority queue
 ```cpp
 #include <queue>
-priority_queue<TIPO> var; //Cria com comparador padrão Less<T>
+priority_queue<TIPO> var; // Cria com comparador padrão Less<T>
 
 class MyComparator{
 	bool operator ()(const TIPO & v1, const TIPO & v2){...}
 }
 
-priority_queue<TIPO, std::vector<TIPO>, MyComparator> var; //Cria com comparador personalizado
+priority_queue<TIPO, std::vector<TIPO>, MyComparator> var; // Cria com comparador personalizado
 
 var.push(ITEM); // Insere
 TIPO primeiro = var.top(); // Pega o primeiro sem remover
@@ -129,7 +129,7 @@ ostream& operator<<(ostream &out, TIPO &p) {
 
 string a, b, c;
 cin >> a;
-cin.ignore(); // Discartar espaÃ§os
+cin.ignore(); // Discartar espaços
 getline(cin, b);
 cin >> c;
 ```
@@ -355,8 +355,8 @@ count_if(vet.begin(), vet.end(), bind2nd(less<int>(), 10));
 // Converte ponteiro em função
 transform(vet.begin(), vet.end(), vet2.begin(), ptr_fun(atoi));
 // Usar método de objeto
-transform(vet.begin(), vet.end(), vet2.begin(), mem_fun(&string::length)); //se valores forem ponteiros
-transform(vet.begin(), vet.end(), vet2.begin(), mem_fun_ref(&string::length)); //se valores forem valores
+transform(vet.begin(), vet.end(), vet2.begin(), mem_fun(&string::length)); // se valores forem ponteiros
+transform(vet.begin(), vet.end(), vet2.begin(), mem_fun_ref(&string::length)); // se valores forem valores
 
 ```
 
@@ -387,7 +387,7 @@ partial_sum(vet.begin(), vet.end(), vet2.begin(), <plus<int>()>); // "1 2 3 4" -
 string s;
 string s("abc"); // construtor
 string::iterator b = s.begin(), e = s.end(); // iteradores
-int tamanho = s.size(); tamanho = s.length(); // tamanh
+int tamanho = s.size(); tamanho = s.length(); // tamanho
 bool vazia = s.empty(); // vazia?
 cout << c[1] << c.at(1); // acessar
 s += "outra"; s.append("outra");
@@ -420,7 +420,7 @@ getline(cin, s);
 
 ## cmath
 ```cpp
-//Funções trigonométricas - em radianos
+// Funções trigonométricas - em radianos
 double angle = 3.14;
 double v = sin(angle) + cos(angle) + tan(angle) +
 	 acos(1.0) + // [0, pi]
@@ -441,7 +441,7 @@ v = log(1234);          // Logaritmo nepteriano
 v = log10(1234);        // Log na base 10
 
 int integer;
-double frac = modf(13.4, &integer); //Separa as partes inteira e decimal.
+double frac = modf(13.4, &integer); // Separa as partes inteira e decimal.
 
 v = log2(1024); // Log na base 2, C++11 apenas.
 
@@ -792,7 +792,7 @@ def lcs(a, b):
 	return X[0]
 ```
 
-## Logest Increasing Subsequence
+## Longest Increasing Subsequence
 ```python
 def lis(sequence):
 	dp = [1] * len(sequence)
@@ -886,7 +886,6 @@ int overestimate_prime(int n) {
 }
 sieve_of_eratosthenes(overestimate_prime(n))[n - 1];
 ```
-
 
 ## Contagem:
 ```
