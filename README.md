@@ -643,6 +643,46 @@ def djakstra(src, graph):
 	return costs, parent
 ```
 
+## Bellman-Ford (custo mínimo, aresta negativa)
+```python
+def bellman_ford(origin, nodes, edges):
+	dist = [float('inf')] * nodes
+	pred = [-1] * nodes
+	dist[origin], pred[origin] = 0, -2
+
+	for i in range(nodes - 1):
+		for edge in edges:
+			u, v, weight = edge
+			if dist[u] + weight < dist[v]:
+				dist[v] = dist[u] + weight
+				pred[v] = u
+
+	for edge in edges:
+		u, v, weight = edge
+		if dist[u] + weight < dist[v]:
+			return 'cicle'
+
+	return dist, pred
+```
+
+## Floyd-Warshall (custo mínimo, todos nós para todos os nós)
+```python
+def floyd_warshall(nodes, edges):
+	dist = [[float('inf')] * nodes for _ in range(nodes)] # N x N
+	next = [[-1] * nodes for _ in range(nodes)]
+	for u, v, w in edges:
+		dist[u][v] = w
+		next[u][v] = v
+
+	for k in range(nodes):
+		for i in range(nodes):
+			for j in range(nodes):
+				if dist[i][k] + dist[k][j] < dist[i][j]:
+					dist[i][j] = dist[i][k] + dist[k][j]
+					next[i][j] = next[i][k]
+	return dist, next
+```
+
 ## BFS
 ```cpp
 
@@ -748,8 +788,5 @@ def lcs(a, b):
 ```
 
 # TODO ALG
-- bellman-ford
-- floyd-marshall
-- kruskal
 - lis
 - modular_pow
