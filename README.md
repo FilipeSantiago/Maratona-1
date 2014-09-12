@@ -597,6 +597,28 @@ float val = a.floatValue();
 String strVal = a.toString();
 ```
 
+## Java IO
+```java
+import java.util.Scanner;
+
+Scanner s = new Scanner(System.in);
+
+// Leitura de input
+int a = s.nextInt();
+String str = s.next(); // Próxima palavra, retorna "ab" para input "ab cd"
+str = s.nextLine();    // Lê linha
+BigInteger bigI = s.nextBigInteger();
+
+//Checagem de fim de input
+boolean b;
+b = s.hasNextLine();
+b = s.hasNextInt();
+b = s.hasNext();
+
+// ...
+s.close(); // recomendado
+```
+
 ## Djakstra (custo mínimo)
 ```python
 def djakstra(src, graph):
