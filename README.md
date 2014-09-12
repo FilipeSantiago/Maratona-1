@@ -666,8 +666,7 @@ def bellman_ford(origin, nodes, edges):
 
 	return dist, pred
 ```
-
-<br><br><br><br>
+<br><br><br><br><br><br>
 
 ## Floyd-Warshall (custo mínimo, todos nós para todos os nós)
 ```python
