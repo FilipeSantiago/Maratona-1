@@ -770,7 +770,7 @@ int fordFulkerson(int grapv[V}[V], int s, int t) {
 }
 ```
 
-# Longest Common Subsequence
+## Longest Common Subsequence
 ```python
 def lcs(a, b):
 	X = [0]*(max(len(b), len(a)) + 1)
@@ -787,7 +787,28 @@ def lcs(a, b):
 	return X[0]
 ```
 
-# Mochila 01 (Prog Dinâmica)
+## Logest Increasing Subsequence
+```python
+def lis(sequence):
+	dp = [1] * len(sequence)
+	prev = [1] * len(sequence)
+	max_len, best_end = 1, 0
+
+	for i in range(1, len(sequence)):
+		dp[i] = 1
+		prev[i] = -1
+
+		for j in range(i - 1, -1, -1):
+			if dp[j] + 1 > dp[i] and sequence[j] < sequence[i]:
+				dp[i] = dp[j] + 1
+				prev[i] = j
+			if dp[i] > max_len:
+				best_end = i
+				max_len = dp[i]
+	return max_len, best_end, prev
+```
+
+## Mochila 01 (Prog Dinâmica)
 ```python
 def mochila01(values, weights, W):
 	item_count = len(values)
@@ -823,5 +844,4 @@ def progDinamica(caso, lookup_table):
 ```
 
 # TODO ALG
-- lis
 - modular_pow
