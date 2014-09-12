@@ -787,6 +787,41 @@ def lcs(a, b):
 	return X[0]
 ```
 
+# Mochila 01 (Prog Dinâmica)
+```python
+def mochila01(values, weights, W):
+	item_count = len(values)
+	table = [[0 for col in range(W+1)] for row in range(item_count+1)] 
+
+	# tabela (items+1) x (W+1)
+	# 1a linha e 1a coluna = 0
+
+	for capacity in range(1, W + 1):
+		for item in range(1, item_count + 1):
+			item_weight = weights[item-1]
+			item_value = values[item-1]
+			previous_value = table[item-1][capacity]
+
+			if capacity >= item_weight:
+				table[item][capacity] = max(table[item-1][capacity - item_weight] + item_value, previous_value)
+			else:
+				table[item][capacity] = previous_value
+
+	return table[item_count][W]
+```
+
+## _Template_ de programação dinâmica
+```python
+def progDinamica(caso, lookup_table):
+	if caso_basico:
+		return calcula_caso_basico()
+	elif lookup_table.contains(caso):
+		return lookup_table[caso]
+	else:
+		resp_proximo_caso = progDinamica(caso+1, lookup_table)
+		return lookup_table[caso] = combina(caso, resp_proximo_caso)
+```
+
 # TODO ALG
 - lis
 - modular_pow
