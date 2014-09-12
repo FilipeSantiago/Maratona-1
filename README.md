@@ -619,6 +619,8 @@ b = s.hasNext();
 s.close(); // recomendado
 ```
 
+<br><br>
+
 ## Djakstra (custo mínimo)
 ```python
 def djakstra(src, graph):
