@@ -667,6 +667,8 @@ def bellman_ford(origin, nodes, edges):
 	return dist, pred
 ```
 
+<br><br><br><br>
+
 ## Floyd-Warshall (custo mínimo, todos nós para todos os nós)
 ```python
 def floyd_warshall(nodes, edges):
@@ -714,6 +716,8 @@ bool bfs(T src, T dest){
 	return false;
 }
 ```
+
+<br><br><br><br>
 
 ## Prim (árvore geradora mínima)
 ```python
