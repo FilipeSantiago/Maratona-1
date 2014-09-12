@@ -881,3 +881,40 @@ int overestimate_prime(int n) {
 
 sieve_of_eratosthenes(overestimate_prime(n))[n - 1];
 ```
+
+
+## Contagem:
+```
+Permutações: (número de ordenações de n elementos em um conjunto de n elementos)
+	P(n) = n!
+k-Permutações: (número de ordenações de k elementos em um conjunto de n elementos)
+	P(n,k) = n! / (n - k)!
+Combinações: (número de subconjuntos de tamanho k formados a partir de um conjunto com n elementos)
+	C(n,k) = n! / (k! * (n - k)!)
+	C(n,k) = C(n-1,k-1) + C(n-1,k)
+	C(k,k) = 1
+	C(n-k,0) = 1
+Partições: (generalizam combinações para r conjuntos)
+	Part = n! / (n1! * n2! * ... * nr!)
+	
+N-ésimo número de Catalan:
+	Cn = C(2n,2) / (n + 1)
+	~ Quantas maneiras é possível construir fórmulas balanceadas a partir de n pares de parênteses
+	~ Quantas triangulações são possíveis em um polígono convexo
+
+Números Eulerianos: (nútmero de permutações de tamanho n com exatamente k sequências ascendentes)
+	E(n,k) = (n - k + 1) * E(n-1,k-1) + k * E(n-1,k)
+	E(n-k,0) = 1
+	E(k+1,k) = 1
+	
+```
+
+## Fibonacci
+```python
+def fib_num(n):
+	sq5 = sqrt(5)
+	G = (1 + sq5)/2.0
+	psi = 1 - G
+	return (G**n - psi**n)/sq5
+
+```
