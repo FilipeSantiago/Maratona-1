@@ -619,7 +619,11 @@ b = s.hasNext();
 s.close(); // recomendado
 ```
 
-<br><br>
+## Fórmulas
+### Coordenadas baricêntricas
+![Alt text](http://upload.wikimedia.org/math/5/0/4/5045804ef8062d24b46a98718ffb459f.png)
+![Alt text](http://upload.wikimedia.org/math/5/c/3/5c3eb2411c6ab5a4c2e45a75ba480605.png)
+![Alt text](http://upload.wikimedia.org/math/9/0/0/90060657e689cbcf64a06ed1648f75a1.png)
 
 ## Djakstra (custo mínimo)
 ```python
