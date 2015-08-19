@@ -819,6 +819,8 @@ def lis(sequence):
 <br><br>
 
 ## Mochila 01 (Prog Dinâmica)
+
+### Python
 ```python
 def mochila01(values, weights, W):
 	item_count = len(values)
@@ -841,6 +843,45 @@ def mochila01(values, weights, W):
 	return table[item_count][W]
 ```
 
+### Exemplo C++ (Presentes que o Noel carrega)
+```cpp
+
+vector<bool> empacota(vector<pac> &presentes, vector<int> &carregado, int vez, vector<vector<int> > &tab){
+    if(presentes.size() <= vez){
+        int maior = 0, iMaior = 0;
+        for (int i = 0; i < carregado.size(); ++i){
+            if(carregado[i] > maior) {
+                maior = carregado[i];
+                iMaior = i;
+            }
+        }
+        vector<bool> resp(presentes.size(), false);
+        for (int i = presentes.size()-1; i >= 0 ; --i){
+            if(tab[iMaior][i] > 0){
+                resp[i] = true;
+            }
+            iMaior -= tab[iMaior][i];
+            if(iMaior < 0) break;
+        }
+        return resp;
+    }else{
+        vector<int> prox(carregado.size());
+        for (int i = 0; i < carregado.size(); ++i){
+            if(i < presentes[vez].peso){
+                prox[i] = carregado[i];
+                tab[i][vez] = 0;
+            }else{
+                prox[i] = max(carregado[i], presentes[vez].numPresente + carregado[i - presentes[vez].peso]);
+                if(prox[i] == carregado[i]) tab[i][vez] = 0;
+                else tab[i][vez] = presentes[vez].peso;
+            }
+        }
+        return empacota(presentes, prox, vez+1, tab);
+    }
+}
+
+```
+
 ## _Template_ de programação dinâmica
 ```python
 def progDinamica(caso, lookup_table):
@@ -852,7 +893,30 @@ def progDinamica(caso, lookup_table):
 		resp_proximo_caso = progDinamica(caso+1, lookup_table)
 		return lookup_table[caso] = combina(caso, resp_proximo_caso)
 ```
+###Exemplo em C++ (Maior soma consecutiva)
 
+```cpp
+long long contaSubSeq(vector <long long> seq, vector<long long> cont, long long numSeq, long long numParada){
+    if(numSeq >= numParada){
+        long long resp = 0;
+        for (long long i = 0; i < cont.size(); ++i){
+            resp += cont[i];
+        }
+        return resp;
+    }else{
+        vector<long long> proxPasso;
+        long long prox = 0; 
+        for (long long i = 0; i < cont.size(); ++i){
+            prox = 0;
+            for (long long j = i+1; j < cont.size(); ++j){
+                if(seq[i] < seq[j]) prox += cont[j];
+            }
+            proxPasso.push_back(prox);
+        }
+        return contaSubSeq(seq, proxPasso, numSeq+1, numParada);
+    }
+}
+```
 ## Modular exponentiation ((base ^ exp) % mod)
 ```cpp
 int modular_pow(int base, int exp, int modulus) {
